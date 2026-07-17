@@ -60,7 +60,7 @@ print(f"After 3 years: R {amount:,.2f}")
 print(f"Interest earned: R {interest:,.2f}")
 
 # ==========================================
-# Exercise 3 - List Operations
+# Exercise 3 - List Operationss
 # ==========================================
 
 transactions = [
