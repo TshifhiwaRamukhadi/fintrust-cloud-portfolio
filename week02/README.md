@@ -24,4 +24,4 @@
 
 ## Reflection
 
-This week I learned how SQL JOINs connect related tables and how database relationships support business reporting. I also continued building confidence with Python scripting and organizing code using GitHub.
+This week I learned how SQL JOINs connect related tables through primary and foreign keys. INNER JOIN and LEFT JOIN helped me understand how banking data can be combined across customers, accounts, and transactions. I also continued improving my Python skills and repository organization.

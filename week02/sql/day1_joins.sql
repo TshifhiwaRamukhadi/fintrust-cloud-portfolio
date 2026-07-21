@@ -1,69 +1,100 @@
 -- ==========================================================
 -- FinTrust Bank
 -- Week 2 Day 1
--- SQL JOIN Challenges
+-- SQL JOIN Exercises
 -- Author: Tshifhiwa Ramukhadi
 -- ==========================================================
 
 -- ==========================================================
--- Challenge 1
--- Find customers who have a CHEQUE account with a
--- balance below R1,000.
--- Uses INNER JOIN because we only want customers
--- who have matching account records.
+-- Exercise 1
+-- Show customer name, account type and balance.
+-- ==========================================================
+
+SELECT
+    c.first_name,
+    c.last_name,
+    a.account_type,
+    a.balance
+FROM customers c
+INNER JOIN accounts a
+    ON c.customer_id = a.customer_id
+ORDER BY a.balance DESC;
+
+
+-- ==========================================================
+-- Exercise 2
+-- Gauteng customers with balance greater than R25,000.
 -- ==========================================================
 
 SELECT
     c.first_name,
     c.last_name,
     c.province,
+    a.account_type,
     a.balance
 FROM customers c
 INNER JOIN accounts a
     ON c.customer_id = a.customer_id
-WHERE a.account_type = 'CHEQUE'
-  AND a.balance < 1000
-ORDER BY a.balance ASC;
+WHERE c.province = 'Gauteng'
+  AND a.balance > 25000
+ORDER BY a.balance DESC;
 
 
 -- ==========================================================
--- Challenge 2
--- List all transactions made by customers from
--- Western Cape.
--- Uses a 3-table INNER JOIN.
+-- Exercise 3
+-- Three-table JOIN showing customer transactions.
+-- Only DEBIT transactions.
 -- ==========================================================
 
 SELECT
     c.first_name,
     c.last_name,
+    a.account_type,
     t.amount,
-    t.transaction_type,
     t.transaction_date
 FROM customers c
 INNER JOIN accounts a
     ON c.customer_id = a.customer_id
 INNER JOIN transactions t
     ON a.account_id = t.account_id
-WHERE c.province = 'Western Cape'
+WHERE t.transaction_type = 'DEBIT'
 ORDER BY t.transaction_date DESC;
 
 
 -- ==========================================================
--- Challenge 3
--- Find all accounts with NO transactions recorded.
--- Uses LEFT JOIN to keep all accounts and identify
--- accounts without matching transactions.
+-- Exercise 4
+-- Customers who have never made a transaction.
+-- LEFT JOIN + IS NULL pattern.
 -- ==========================================================
 
 SELECT
-    a.account_id,
-    a.account_type,
-    a.balance,
+    c.customer_id,
     c.first_name,
     c.last_name
-FROM accounts a
-INNER JOIN customers c
-    ON a.customer_id = c.customer_id
+FROM customers c
+LEFT JOIN accounts a
+    ON c.customer_id = a.customer_id
 LEFT JOIN transactions t
     ON a.account_id = t.account_id
 WHERE t.transaction_id IS NULL;
+
+
+-- ==========================================================
+-- Exercise 5
+-- Transactions greater than R10,000 for customers
+-- in Western Cape or KwaZulu-Natal.
+-- ==========================================================
+
+SELECT
+    c.first_name,
+    c.last_name,
+    c.province,
+    t.amount
+FROM customers c
+INNER JOIN accounts a
+    ON c.customer_id = a.customer_id
+INNER JOIN transactions t
+    ON a.account_id = t.account_id
+WHERE t.amount > 10000
+  AND c.province IN ('Western Cape', 'KwaZulu-Natal')
+ORDER BY t.amount DESC;
