@@ -21,7 +21,7 @@ print(
 )
 
 # ==========================================
-# Exercise 2 - Compound Interest
+# Exercise 2 - Compound Interests
 # ==========================================
 
 from decimal import Decimal
