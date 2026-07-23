@@ -1,0 +1,6 @@
+transaction_id,account_id,customer_name,amount,transaction_type
+TX001,ACC1001,Thabo Nkosi,5000.00,credit
+TX002,ACC1002,Amahle Dlamini,-250.00,debit
+TX003,ACC1003,Sipho Mokoena,1200.00,credit
+TX004,ACC1004,Lerato Sithole,-800.00,debit
+TX005,ACC1005,Nomvula Dube,3500.00,credit
