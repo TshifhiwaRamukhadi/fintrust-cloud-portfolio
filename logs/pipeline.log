@@ -1,0 +1,3 @@
+2026-07-24 11:27:42  INFO      === FinTrust Transaction Pipeline starting ===
+2026-07-24 11:27:42  INFO      Input:  data\raw_transactions.csv
+2026-07-24 11:27:42  CRITICAL  Input file not found: data\raw_transactions.csv — aborting

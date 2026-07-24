@@ -1,0 +1,6 @@
+2026-07-24 11:30:34  INFO      === FinTrust Transaction Pipeline starting ===
+2026-07-24 11:30:34  INFO      Input:  c:\Users\NB446082\OneDrive - Nedbank\Documents\GitHub\fintrust-cloud-portfolio\week03\python\data\raw_transactions.csv
+2026-07-24 11:30:34  INFO      Processed: 5 rows, skipped: 0
+2026-07-24 11:30:34  INFO      Clean CSV written: c:\Users\NB446082\OneDrive - Nedbank\Documents\GitHub\fintrust-cloud-portfolio\week03\python\data\clean_transactions.csv
+2026-07-24 11:30:34  INFO      Summary JSON written: c:\Users\NB446082\OneDrive - Nedbank\Documents\GitHub\fintrust-cloud-portfolio\week03\python\data\daily_summary.json
+2026-07-24 11:30:34  INFO      === Pipeline complete ===
