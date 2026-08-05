@@ -203,6 +203,8 @@ For three VPCs:
 
 must all be configured separately.
 
+---
+
 ## Reason 2
 
 VPC Peering becomes difficult to manage as environments grow.
@@ -227,7 +229,7 @@ A user submits the following request:
 
 Traffic flow:
 
-1. User browser sends HTTPS request.
+1. User browser sends an HTTPS request.
 2. DNS resolves the ALB endpoint.
 3. Request reaches fintrust-alb in public subnets.
 4. ALB evaluates listener rules.
@@ -238,11 +240,11 @@ Traffic flow:
 
 Flow:
 
-User Browser
-→ Route 53
-→ ALB
-→ api-targets
-→ ECS Container
+User Browser  
+→ Route 53  
+→ ALB  
+→ api-targets  
+→ ECS Container  
 → Response
 
 ---
@@ -252,6 +254,38 @@ User Browser
 No path rule exists for /payments/*.
 
 The request follows the ALB default rule and is forwarded to portal-targets.
+
+---
+
+## When Does a Default Route Table Have a Local Route?
+
+Every new VPC automatically includes a local route in its default route table.
+
+Example:
+
+10.0.0.0/16 → local
+
+This route allows all subnets within the VPC to communicate with each other without requiring an Internet Gateway, NAT Gateway, or additional routing configuration.
+
+---
+
+## If FinTrust Adds a Fourth VPC Next Quarter
+
+### Transit Gateway
+
+Only one additional attachment is required:
+
+VPC4 → Transit Gateway
+
+### VPC Peering
+
+Three additional peering connections would be required:
+
+- VPC4 ↔ Prod
+- VPC4 ↔ Dev
+- VPC4 ↔ Audit
+
+Transit Gateway scales much better because each VPC connects only once to the central hub.
 
 ---
 
@@ -283,6 +317,16 @@ Resources in connected VPCs can communicate directly through private IP addresse
 
 ---
 
+## What Is the Key Difference Between PrivateLink and VPC Peering?
+
+PrivateLink exposes only a specific service through a private endpoint without exposing the entire network.
+
+VPC Peering provides private network connectivity between entire VPCs, allowing resources in both VPCs to communicate directly if routes and security rules permit.
+
+For FinTrust, PrivateLink is ideal when accessing a compliance SaaS platform because only the required service is exposed, not the whole network.
+
+---
+
 ## Key Takeaways
 
 - ALB is required for path-based routing.
@@ -291,3 +335,31 @@ Resources in connected VPCs can communicate directly through private IP addresse
 - PrivateLink provides private service access.
 - Direct Connect provides dedicated hybrid connectivity.
 - Client VPN is used for individual remote users.
+- VPC Peering does not support transitive routing.
+- One NAT Gateway per Availability Zone is the recommended high-availability design.
+
+---
+
+## FinTrust Summary
+
+### Load Balancer
+
+- ALB deployed in public subnets.
+- /api/* routes to api-targets.
+- /portal/* routes to portal-targets.
+- Default traffic routes to portal-targets.
+
+### Connectivity
+
+- Transit Gateway connects prod, dev, and audit VPCs.
+- PrivateLink provides secure access to SaaS compliance services.
+- Direct Connect links the on-premises mainframe to AWS.
+- Client VPN provides remote access for DevOps engineers.
+
+### Architecture Principles
+
+- High availability through Multi-AZ design.
+- Centralized routing with Transit Gateway.
+- Private service consumption with PrivateLink.
+- Layer 7 routing through ALB.
+- Dedicated hybrid connectivity using Direct Connect.
