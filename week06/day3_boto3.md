@@ -1,63 +1,70 @@
-# Week 6 Day 3 - Introduction to Python and boto3
+# Week 6 Day 3: Introduction to boto3
 
 ## Objective
 
-Learn how to automate AWS tasks using Python and boto3.
-
-boto3 is AWS's official Python SDK and allows Python scripts to interact with AWS services programmatically.
-
----
+Learn how to use Python and boto3 to interact with AWS services.
 
 ## What is boto3?
 
-boto3 is the AWS SDK for Python.
-
-Common use cases:
-
-- List S3 buckets
-- Describe EC2 instances
-- Manage IAM users
-- Access DynamoDB tables
-- Automate AWS operations
-
----
-
-## Authentication Methods
-
-boto3 searches for credentials in the following order:
-
-1. Environment Variables
-2. ~/.aws/credentials
-3. IAM Role (EC2)
-4. Task Role (ECS/Lambda)
-
-Best Practice:
-
-Never hardcode AWS credentials.
-
-Use IAM Roles whenever possible.
-
----
-
-## Client vs Resource
-
-### Client
-
-Low-level AWS API interface.
-
-Returns raw JSON responses.
+boto3 is the AWS SDK for Python. It allows Python applications to communicate with AWS services.
 
 Example:
 
 ```python
-s3 = boto3.client('s3')
+import boto3
 
-## Script Execution Result
+s3 = boto3.client("s3")
+```
 
-The boto3 package was successfully installed and the S3 audit script executed.
+## boto3 Client
 
-The script reached the AWS API call stage but returned:
+A client provides direct access to AWS service APIs.
 
-```text
-botocore.exceptions.NoCredentialsError:
-Unable to locate credentials
+Example:
+
+```python
+s3 = boto3.client("s3")
+```
+
+## Common S3 Operations
+
+List buckets:
+
+```python
+response = s3.list_buckets()
+```
+
+Get bucket location:
+
+```python
+s3.get_bucket_location(
+    Bucket="bucket-name"
+)
+```
+
+Get bucket encryption:
+
+```python
+s3.get_bucket_encryption(
+    Bucket="bucket-name"
+)
+```
+
+## Lab Activity
+
+Build an S3 Audit Script that:
+
+- Lists S3 buckets
+- Checks the bucket region
+- Checks public access settings
+- Checks encryption status
+- Produces a simple audit report
+
+## Skills Demonstrated
+
+- Python scripting
+- boto3 usage
+- AWS SDK interaction
+- Exception handling
+- Security auditing
+``

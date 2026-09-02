@@ -1,0 +1,16 @@
+ week06/day2_window_functions.md      | 188 [32m+++++[m[31m-------------------------[m
+ week06/day3_boto3.md                 |  83 [32m++++++++[m[31m------[m
+ week06/day4_security_automation.md   |  45 [32m++++++++[m
+ week06/day5_synthesis.md             |  57 [32m+++++++++[m
+ week06/iam_mfa_audit.py              |  59 [32m++++++++++[m
+ week06/integration_challenge.py      | 118 [32m+++++++++++++++++++[m
+ week06/integration_challenge.sql     | 123 [32m++++++++++++++++++++[m
+ week06/s3_audit_report.py            | 156 [32m+++++[m[31m--------------------[m
+ week06/security_audit_report.py      | 163 [32m++++++++++++++++++++++++++[m
+ week06/sg_audit.py                   | 103 [32m+++++++++++++++++[m
+ week06/window_functions_lab.sql      |  22 [32m+++[m[31m-[m
+ week07/day4_event_driven_pipeline.md | 149 [32m++++++++++++++++++++++++[m
+ week07/day5_portfolio_checkin.md     | 217 [32m+++++++++++++++++++++++++++++++++++[m
+ week07/fraud_scorer_lambda.py        | 134 [32m+++++++++++++++++++++[m
+ week07/sqs_producer.py               |  43 [32m+++++++[m
+ 15 files changed, 1329 insertions(+), 331 deletions(-)

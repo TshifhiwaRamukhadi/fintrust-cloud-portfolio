@@ -55,14 +55,24 @@ WITH monthly_spend AS (
       AND transaction_date < '2024-07-01'
     GROUP BY customer_id,
              DATE_TRUNC('month', transaction_date)
+),
+spend_comparison AS (
+    SELECT
+        customer_id,
+        month_start,
+        monthly_amount,
+        LAG(monthly_amount) OVER (
+            PARTITION BY customer_id
+            ORDER BY month_start
+        ) AS previous_month_amount
+    FROM monthly_spend
 )
 SELECT
     customer_id,
     month_start,
     monthly_amount,
-    LAG(monthly_amount) OVER (
-        PARTITION BY customer_id
-        ORDER BY month_start
-    ) AS previous_month_amount
-FROM monthly_spend
+    previous_month_amount
+FROM spend_comparison
+WHERE previous_month_amount IS NOT NULL
+  AND monthly_amount > (previous_month_amount * 3)
 ORDER BY customer_id, month_start;

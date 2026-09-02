@@ -1,18 +1,14 @@
-# Week 6 Day 2 - SQL Window Functions
+# Week 6 Day 2: SQL Window Functions
 
 ## Objective
 
-Learn how SQL Window Functions perform calculations across related rows while preserving individual row detail.
+Learn how to use SQL Window Functions to perform analytics while retaining individual row detail.
 
-Unlike GROUP BY, window functions do not collapse rows.
-
----
-
-## Window Function Components
+## Key Concepts
 
 ### PARTITION BY
 
-Groups rows into logical partitions without collapsing results.
+Creates logical groups for calculations without collapsing rows.
 
 Example:
 
@@ -21,85 +17,36 @@ SUM(amount) OVER (
     PARTITION BY customer_id
 )
 ```
-
----
-
-### ORDER BY
-
-Defines the sequence of rows within a partition.
-
-Example:
-
-```sql
-SUM(amount) OVER (
-    PARTITION BY customer_id
-    ORDER BY transaction_date
-)
-```
-
----
-
-### OVER()
-
-Defines the window where the calculation occurs.
-
-Example:
-
-```sql
-AVG(amount) OVER ()
-```
-
----
-
-## Ranking Functions
 
 ### ROW_NUMBER()
 
-Assigns a unique number to every row.
+Assigns a unique sequential number to each row.
 
 Example:
 
 ```sql
 ROW_NUMBER() OVER (
+    PARTITION BY branch_code
     ORDER BY amount DESC
 )
 ```
 
----
-
-### RANK()
-
-Assigns the same rank to ties and creates gaps.
-
-Example:
-
-```text
-50000 → 1
-45000 → 2
-45000 → 2
-30000 → 4
-```
-
----
-
 ### DENSE_RANK()
 
-Assigns the same rank to ties but does not create gaps.
+Assigns rankings without gaps when ties occur.
 
 Example:
 
-```text
-50000 → 1
-45000 → 2
-45000 → 2
-30000 → 3
-```
+| Amount | Rank |
+|---------|------|
+| 50000 | 1 |
+| 45000 | 2 |
+| 45000 | 2 |
+| 30000 | 3 |
 
----
+### SUM() OVER()
 
-## Running Totals
-
-Window functions can calculate cumulative values.
+Calculates running totals.
 
 Example:
 
@@ -110,114 +57,33 @@ SUM(amount) OVER (
 )
 ```
 
-This creates a running total per branch.
+### LAG()
 
----
-
-## LAG Function
-
-LAG retrieves data from a previous row.
+Retrieves values from previous rows.
 
 Example:
 
 ```sql
-LAG(total_amount) OVER (
-    PARTITION BY branch_code
+LAG(monthly_amount) OVER (
+    PARTITION BY customer_id
     ORDER BY month_start
 )
 ```
 
-Use Cases:
+## Lab Activities
 
-- Month-over-month comparisons
-- Fraud detection
-- Customer spending trends
+### Challenge 1
 
----
+Rank customers within spending tiers using DENSE_RANK.
 
-## LEAD Function
+### Challenge 2
 
-LEAD retrieves data from a future row.
+Calculate running totals of suspicious transaction amounts.
 
-Example:
+### Challenge 3
 
-```sql
-LEAD(total_amount) OVER (
-    PARTITION BY branch_code
-    ORDER BY month_start
-)
-```
-
-Use Cases:
-
-- Forecasting
-- Trend analysis
-
----
-
-## Challenge 1 - Customer Spend Ranking
-
-Use DENSE_RANK() to rank customers within spending tiers.
-
-Requirements:
-
-- Premium
-- Standard
-- Basic
-
-Customers should be ranked within their tier, not globally.
-
----
-
-## Challenge 2 - Running Fraud Exposure
-
-Calculate cumulative suspicious transaction amounts by branch.
-
-Use:
-
-- PARTITION BY branch_code
-- ORDER BY transaction_date
-- SUM() OVER()
-
----
-
-## Challenge 3 - Spending Spikes
-
-Detect customers whose monthly spend exceeds three times the previous month.
-
-Use:
-
-- CTE
-- LAG()
-- PARTITION BY customer_id
-
----
-
-## Why Not Use Window Functions In WHERE?
-
-Window functions are calculated after the WHERE clause.
-
-Correct pattern:
-
-1. Create a CTE
-2. Calculate window function
-3. Filter in the outer query
-
----
+Detect customer spending spikes using LAG.
 
 ## Reflection
 
-Window functions are preferred when individual row details must be preserved while calculating rankings, running totals, averages, or comparisons across related rows without using self-joins.
-
----
-
-## Key Takeaways
-
-- PARTITION BY groups rows without collapsing them.
-- OVER() defines the window.
-- ROW_NUMBER() gives unique rankings.
-- RANK() allows ties and gaps.
-- DENSE_RANK() allows ties without gaps.
-- LAG() retrieves previous-row values.
-- LEAD() retrieves next-row values.
-- SUM() OVER() is commonly used for running totals.
+I would use a window function when I need to keep detailed row-level information while also performing calculations such as rankings, running totals, or comparisons with previous rows. Unlike GROUP BY, window functions do not collapse rows into summaries.
