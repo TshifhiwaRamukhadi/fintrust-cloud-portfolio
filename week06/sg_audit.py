@@ -2,7 +2,7 @@ import boto3
 
 ec2 = boto3.client(
     "ec2",
-    region_name="af-south-1"
+    region_name="eu-north-1"
 )
 
 RESTRICTED_PORTS = {

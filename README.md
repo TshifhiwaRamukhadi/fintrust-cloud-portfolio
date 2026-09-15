@@ -11,9 +11,9 @@
 
 This portfolio documents my work throughout the 16-week Cloud to Solutions Accelerator Programme.
 
-Each weekly folder contains hands-on technical exercises, architecture decisions, SQL scripts, Python applications, cloud labs, and supporting documentation built around the FinTrust Bank case study.
+Each weekly folder contains hands-on technical exercises, architecture decisions, SQL scripts, Python applications, cloud labs, automation projects, and supporting documentation built around the FinTrust Bank case study.
 
-The project simulates a South African digital banking environment deployed in the AWS Africa (Cape Town) Region (`af-south-1`), applying real-world cloud architecture, security, networking, data, and automation concepts.
+The project simulates a South African digital banking environment deployed in the AWS Africa (Cape Town) Region (`af-south-1`), applying real-world cloud architecture, networking, security, automation, migration, governance, SQL analytics, and data engineering concepts.
 
 ---
 
@@ -30,15 +30,13 @@ SQL queries demonstrating:
 
 using the FinTrust Bank transactions dataset.
 
-Python applications implementing a fraud detection decision engine using:
+Python applications implementing fraud detection decision engines using:
 
 - if / elif / else
 - Boolean logic
-- Membership testing with the `in` operator
+- Membership testing
 - Early return patterns
-- Decimal for currency accuracy
-
----
+- Decimal for financial accuracy
 
 ## Key Concepts Demonstrated
 
@@ -47,36 +45,36 @@ Python applications implementing a fraud detection decision engine using:
 #### Amazon EC2
 
 - Persistent virtual servers
-- Suitable for long-running workloads
+- Long-running workload hosting
 
 #### AWS Lambda
 
 - Event-driven serverless execution
-- Pay only when code runs
+- Pay-per-use compute
 
 #### Amazon ECS
 
-- Container orchestration service
-- Ideal for microservices and containerized applications
+- Container orchestration
+- Microservice deployment
 
 ### Storage
 
 #### gp3 EBS Volumes
 
 - General-purpose SSD storage
-- Cost-effective for most workloads
+- Cost-effective workloads
 
 #### io2 EBS Volumes
 
 - High-performance SSD storage
-- Designed for mission-critical applications requiring sustained IOPS
+- Mission-critical workloads
 
 ### SQL
 
 - Aggregate Functions
 - Joins
 - Data Grouping
-- Filtering with HAVING
+- HAVING Filters
 
 ### Python
 
@@ -84,58 +82,7 @@ Python applications implementing a fraud detection decision engine using:
 - Boolean Expressions
 - Membership Operators
 - Currency Handling with Decimal
-- Fraud Detection Decision Flows
-
----
-
-## Project Structure
-
-```text
-week02/
-│
-├── sql/
-│   ├── joins_practice.sql
-│   └── aggregates_report.sql
-│
-├── python/
-│   ├── conditionals.py
-│   └── transaction_flowchart.py
-│
-└── architecture/
-    └── week02_compute_notes.md
-```
-
----
-
-## Files
-
-| File | Description |
-|--------|-------------|
-| sql/joins_practice.sql | INNER JOIN and LEFT JOIN exercises |
-| sql/aggregates_report.sql | Monthly transaction summaries using GROUP BY and HAVING |
-| python/conditionals.py | Transaction classifier, interest-rate calculator, and ATM logic |
-| python/transaction_flowchart.py | Fraud detection decision engine with five test scenarios |
-| architecture/week02_compute_notes.md | Compute service selection and architecture decisions |
-
----
-
-## How to Run
-
-### SQL Exercises
-
-Requires SQLite:
-
-```bash
-sqlite3 :memory: ".read sql/joins_practice.sql"
-sqlite3 :memory: ".read sql/aggregates_report.sql"
-```
-
-### Python Exercises
-
-```bash
-python python/conditionals.py
-python python/transaction_flowchart.py
-```
+- Fraud Detection Flows
 
 ---
 
@@ -145,18 +92,18 @@ python python/transaction_flowchart.py
 
 - Python automation exercises
 - Data processing workflows
-- Decision-tree logic examples
-- Technical reflections and documentation
-- Supporting diagrams and architecture notes
+- Decision-tree applications
+- Technical reflections
+- Architecture documentation
 
 ## Key Concepts Demonstrated
 
 - Python Functions
 - File Handling
-- Data Processing
 - Logging
-- Documentation Practices
-- Technical Reflection Writing
+- Documentation
+- Data Processing
+- Automation
 
 ---
 
@@ -164,11 +111,11 @@ python python/transaction_flowchart.py
 
 ## What I Built
 
-- CSV ingestion workflow
+- CSV ingestion workflows
 - SQLite database creation
-- Automated reporting pipeline
-- SQL analysis queries
-- Data quality validation
+- ETL pipelines
+- Reporting queries
+- Data validation processes
 
 ## Key Concepts Demonstrated
 
@@ -178,14 +125,13 @@ python python/transaction_flowchart.py
 - Database Design
 - SQLite Administration
 - Data Transformation
-- Automated Reporting
+- Reporting Automation
 
 ### SQL
 
 - Aggregations
-- Filtering
 - Reporting Queries
-- Business Metrics
+- Data Analysis
 
 ### Python
 
@@ -202,30 +148,27 @@ python python/transaction_flowchart.py
 
 ### Day 1 – Multi-AZ VPC Architecture
 
-- Designed a Multi-AZ VPC
-- Configured public, application, and data subnet tiers
-- Designed Internet Gateway and NAT Gateway architecture
-- Created route tables and security groups
-- Produced infrastructure diagrams in Draw.io
+- Multi-AZ VPC Design
+- Internet Gateway Architecture
+- NAT Gateway Design
+- Security Group Design
+- Route Table Configuration
 
 ### Day 2 – Connectivity and Load Balancing
 
-- Designed Application Load Balancer architecture
-- Implemented path-based routing design
-- Evaluated Transit Gateway, PrivateLink, and VPC Peering
-- Designed Direct Connect hybrid architecture
-- Completed connectivity decision workshop
+- Application Load Balancer Design
+- Path-Based Routing
+- Transit Gateway Exercises
+- PrivateLink Evaluation
+- Hybrid Connectivity Design
 
 ### Day 3 – Route 53 and DNS
 
-- Created Route 53 hosted zone architecture
-- Configured Alias A records
-- Configured CNAME records
-- Implemented weighted routing design
-- Designed canary deployment traffic flow
-- Produced Route 53 architecture diagrams
-
----
+- Hosted Zones
+- Alias Records
+- CNAME Records
+- Weighted Routing
+- Canary Deployment Routing
 
 ## Key Concepts Demonstrated
 
@@ -233,80 +176,269 @@ python python/transaction_flowchart.py
 
 - VPC Design
 - CIDR Planning
-- Multi-AZ Architecture
-- Internet Gateway
-- NAT Gateway High Availability
 - Route Tables
 - Security Groups
+- Public and Private Subnets
 
 ### Connectivity
 
-- AWS Transit Gateway
+- Transit Gateway
 - VPC Peering
-- AWS PrivateLink
+- PrivateLink
+- Direct Connect
 - AWS Client VPN
-- AWS Direct Connect
 
 ### Load Balancing
 
-- Application Load Balancer (ALB)
+- Application Load Balancer
 - Layer 7 Routing
-- Path-Based Routing
 - Target Groups
-- TLS Termination Concepts
+- TLS Concepts
 
-### DNS and Route 53
+### DNS
 
-- Hosted Zones
-- Alias A Records
+- Route 53
+- Alias Records
 - CNAME Records
-- Weighted Routing
-- Failover Routing
-- Latency Routing
-- Geolocation Routing
-- Canary Deployments
+- Routing Policies
 
 ---
 
-# Architecture Portfolio
+# Week 06: Security, IAM and Monitoring Automation
 
-## Week 05 Deliverables
+## What I Built
 
-### Multi-AZ VPC Architecture
+- IAM security exercises
+- Security group auditing tools
+- CloudWatch monitoring scripts
+- Compliance reporting tools
+- Security automation projects
 
-Files:
+## Key Concepts Demonstrated
+
+### Security
+
+- IAM Policies
+- Least Privilege Access
+- Security Groups
+- Compliance Controls
+
+### Monitoring
+
+- CloudWatch Metrics
+- CloudWatch Alarms
+- Dashboard Concepts
+
+### Python
+
+- boto3 Security Auditing
+- Compliance Reporting
+- Monitoring Automation
+
+---
+
+# Week 07: Serverless and API Development
+
+## What I Built
+
+- Lambda functions
+- API integrations
+- Event-driven workflows
+- Serverless applications
+
+## Key Concepts Demonstrated
+
+### Serverless
+
+- AWS Lambda
+- API Gateway
+- EventBridge
+- SNS
+
+### Python
+
+- Lambda Handlers
+- Event Processing
+- API Development
+
+---
+
+# Week 08: Streaming, AI Services and Data Engineering
+
+## What I Built
+
+- Kinesis producers and consumers
+- OpenSearch integrations
+- CSV to Parquet ETL pipelines
+- Comprehend PII redaction workflows
+- Face verification solutions
+- AI processing pipelines
+
+## Key Concepts Demonstrated
+
+### Data Engineering
+
+- Amazon Kinesis
+- OpenSearch
+- Amazon S3
+- Apache Parquet
+
+### Artificial Intelligence
+
+- Amazon Comprehend
+- PII Detection
+- NLP Services
+
+### Python
+
+- ETL Automation
+- Streaming Data Processing
+- AI Workflow Development
+
+---
+
+# Week 09: Cost Optimisation and Governance
+
+## What I Built
+
+- Cost Explorer reports
+- Budget monitoring tools
+- Savings Plan calculators
+- TCO analysis models
+- Governance reporting
+- Tag compliance auditors
+
+## Key Concepts Demonstrated
+
+### Cost Optimisation
+
+- AWS Pricing Models
+- Cost Explorer
+- AWS Budgets
+- Savings Plans
+
+### Governance
+
+- Tagging Standards
+- Resource Compliance
+- Cost Allocation
+
+### Python
+
+- Cost Reporting
+- Governance Automation
+- Financial Analysis
+
+---
+
+# Week 10: Migration Automation and SQL Reporting
+
+## What I Built
+
+### Python Migration Package
 
 ```text
-week05/fintrust-vpc.drawio
-week05/fintrust-vpc.png
-week05/day1_vpc_build.md
+fintrust_migration/
+├── utils/
+│   └── sessions.py
+├── ec2/
+│   └── classifier.py
+├── rds/
+│   └── dms_helpers.py
+├── s3/
+│   └── sync_helpers.py
+└── __init__.py
 ```
 
-### ALB and Connectivity Design
+### Migration Automation
 
-Files:
+- EC2 workload classification
+- Migration wave identification
+- DMS monitoring and automation
+- CDC lag monitoring
+- DataSync task automation
+- Dynamic bandwidth throttling
 
-```text
-week05/day2_connectivity.md
-```
+### SQL Reporting
 
-### Route 53 DNS Architecture
+Created reporting views including:
 
-Files:
+- Wave Progress
+- Portfolio Completion
+- Customer Account Summary
+- Monthly Transaction Summary
+- Daily Transfer Volume
+- Migration Progress Reporting
+- Transfer Audit Reporting
 
-```text
-week05/route53.drawio
-week05/route53.png
-week05/day3_route53.md
-```
+## Key Concepts Demonstrated
+
+### Migration Services
+
+- AWS Migration Strategies (6Rs)
+- AWS DMS
+- AWS DataSync
+- EventBridge Scheduler
+
+### Python
+
+- Package Development
+- boto3 Automation
+- Monitoring and Orchestration
+
+### SQL
+
+- Views
+- Reporting Queries
+- Aggregations
+- Audit Reporting
+
+---
+
+# Week 11: SQL Analytics and Window Functions
+
+## What I Built
+
+- Window Function exercises
+- Ranking analysis queries
+- Running totals
+- Moving averages
+- Lead and Lag analysis
+- Quartile segmentation
+
+## Key Concepts Demonstrated
+
+### SQL Window Functions
+
+- OVER()
+- PARTITION BY
+- ORDER BY
+
+### Ranking Functions
+
+- ROW_NUMBER()
+- RANK()
+- DENSE_RANK()
+
+### Analytical Functions
+
+- LAG()
+- LEAD()
+- NTILE()
+
+### Reporting
+
+- Trend Analysis
+- Financial Analytics
+- Business Intelligence Queries
 
 ---
 
 # Architecture Context
 
-All FinTrust artifacts form part of a 16-week cloud engineering project simulating a South African digital bank operating in the AWS Africa (Cape Town) Region (`af-south-1`).
+All FinTrust deliverables form part of a simulated digital banking platform running in the AWS Africa (Cape Town) Region (`af-south-1`).
 
-Architecture decisions are documented weekly and are based on AWS Well-Architected Framework principles:
+Architecture decisions align with the AWS Well-Architected Framework:
 
 - Operational Excellence
 - Security
@@ -314,6 +446,53 @@ Architecture decisions are documented weekly and are based on AWS Well-Architect
 - Performance Efficiency
 - Cost Optimization
 - Sustainability
+
+---
+
+# Skills Demonstrated
+
+### Cloud Architecture
+
+- AWS Well-Architected Design
+- Multi-Tier Architectures
+- Hybrid Connectivity
+
+### Networking
+
+- VPC Design
+- DNS
+- Load Balancing
+- Hybrid Connectivity
+
+### Security
+
+- IAM
+- Monitoring
+- Compliance Controls
+
+### Data Engineering
+
+- SQL Analytics
+- ETL Pipelines
+- Streaming Data
+
+### Application Development
+
+- Python
+- Serverless Computing
+- Automation
+
+### Migration
+
+- AWS DMS
+- AWS DataSync
+- Cloud Migration Planning
+
+### Analytics
+
+- SQL Views
+- Window Functions
+- Business Intelligence Reporting
 
 ---
 
@@ -325,13 +504,13 @@ Architecture decisions are documented weekly and are based on AWS Well-Architect
 | Week 2 | Compute, SQL & Python Fundamentals | ✅ Completed |
 | Week 3 | Python, Data Processing & Documentation | ✅ Completed |
 | Week 4 | SQLite Reporting Pipeline | ✅ Completed |
-| Week 5 | AWS Networking, Connectivity & DNS | ✅ Completed (Days 1–3) |
-| Week 6 | Coming Soon | ⏳ Planned |
-| Week 7 | Coming Soon | ⏳ Planned |
-| Week 8 | Coming Soon | ⏳ Planned |
-| Week 9 | Coming Soon | ⏳ Planned |
-| Week 10 | Coming Soon | ⏳ Planned |
-| Week 11 | Coming Soon | ⏳ Planned |
+| Week 5 | AWS Networking, Connectivity & DNS | ✅ Completed |
+| Week 6 | Security, IAM & Monitoring | ✅ Completed |
+| Week 7 | Serverless & API Development | ✅ Completed |
+| Week 8 | Streaming, AI & Data Engineering | ✅ Completed |
+| Week 9 | Cost Optimisation & Governance | ✅ Completed |
+| Week 10 | Migration Automation & SQL Reporting | ✅ Completed |
+| Week 11 | SQL Analytics & Window Functions | 🚧 In Progress |
 | Week 12 | Coming Soon | ⏳ Planned |
 | Week 13 | Coming Soon | ⏳ Planned |
 | Week 14 | Coming Soon | ⏳ Planned |
@@ -342,8 +521,22 @@ Architecture decisions are documented weekly and are based on AWS Well-Architect
 
 # Goal
 
-Develop practical cloud engineering and solution architecture skills while preparing for the:
+Develop practical cloud engineering, architecture, automation, migration, governance, and data engineering skills while preparing for:
 
-**AWS Certified Solutions Architect – Associate (SAA-C03)**
+## AWS Certified Solutions Architect – Associate (SAA-C03)
 
-and building a portfolio that demonstrates real-world cloud architecture, automation, data engineering, networking, DNS, connectivity, and application development capabilities.
+This portfolio demonstrates hands-on experience in:
+
+- Cloud Architecture
+- Networking
+- Security
+- Automation
+- Python Development
+- SQL Analytics
+- Data Engineering
+- Migration Engineering
+- Cost Optimisation
+- Governance
+- Business Intelligence Reporting
+
+while building solutions aligned to real-world enterprise cloud environments.
