@@ -1,0 +1,7 @@
+# Week 9 Reflection: The 7Rs and the FinTrust Architecture
+
+The AWS 7Rs framework changed the way I think about cloud architecture by shifting the focus from simply building solutions in AWS to determining whether a workload should be migrated and identifying the most appropriate migration strategy. Earlier weeks focused on designing and deploying cloud infrastructure, but the 7Rs framework introduced a business-focused perspective that considers cost, risk, complexity, and long-term value.
+
+Within the FinTrust environment, not every application would benefit from a simple rehost approach. The Oracle core banking platform is a strong candidate for Replatform because moving directly to an Aurora-compatible architecture would reduce operational overhead while preserving existing functionality. The historical tape archive would be best suited to Relocate using AWS Snow Family services due to the size of the dataset and the impracticality of network-based transfer. Legacy applications that are no longer actively used should be Retired to eliminate unnecessary infrastructure costs. Certain business-critical systems with regulatory or technical constraints may be Retained until a suitable migration path becomes available.
+
+The 7Rs framework provides a structured decision-making process that aligns technology choices with business outcomes, reducing risk and improving migration success.

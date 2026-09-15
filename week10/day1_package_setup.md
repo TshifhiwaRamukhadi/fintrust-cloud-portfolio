@@ -103,6 +103,34 @@ UNTAGGED      : 0 instances
 This information helps migration teams track overall migration readiness.
 
 ---
+## Classifier Validation
+
+The classifier package was tested against the AWS training account using the boto3 EC2 API.
+
+Result:
+
+```text
+Portfolio: {
+    'replatform': [],
+    'refactor': [],
+    'repurchase': [],
+    'retire': [],
+    'retain': [],
+    'rehost': []
+}
+
+Untagged: []
+```
+
+The classifier successfully connected to AWS and evaluated the EC2 inventory. No migration-tagged EC2 instances were present in the account at the time of testing, therefore no instances were assigned to migration strategies and no untagged instances were detected.
+
+This confirms that:
+
+- The fintrust_migration package imports correctly
+- The session factory creates AWS clients successfully
+- The EC2 classifier executes successfully
+- AWS connectivity and authentication are functioning correctly
+```
 
 ## SQL Views
 
@@ -151,4 +179,4 @@ This provides a simple operational dashboard for migration tracking.
 
 ## Reflection
 
-Building reusable Python packages promotes consistency and maintainability during large migration programmes. Combining API-driven automation with SQL reporting creates a powerful migration management framework. The classifier provides real-time visibility into migration readiness, while SQL Views expose migration progress through a stable and reusable reporting layer.
+Building reusable Python packages promotes consistency, maintainability, and collaboration during large migration programmes. The fintrust_migration package centralises AWS connectivity and migration logic, making it easier for teams to develop and maintain migration tooling at scale. Combining API-driven automation with SQL reporting provides both operational visibility and management reporting capabilities. The EC2 classifier offers real-time insight into migration readiness, while SQL Views provide a stable reporting layer that can be consumed by dashboards, migration teams, and business stakeholders without exposing underlying database complexity.
