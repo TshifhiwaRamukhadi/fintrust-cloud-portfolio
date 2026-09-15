@@ -17,6 +17,14 @@ from .rds.dms_helpers import (
     is_cutover_ready
 )
 
+from .s3.sync_helpers import (
+    start_task_execution,
+    get_execution_status,
+    wait_for_execution,
+    set_task_throttle,
+    monitor_nightly_transfers
+)
+
 __all__ = [
     "get_client",
     "get_resource",
@@ -27,5 +35,10 @@ __all__ = [
     "start_task",
     "stop_task",
     "get_cdc_latency",
-    "is_cutover_ready"
+    "is_cutover_ready",
+    "start_task_execution",
+    "get_execution_status",
+    "wait_for_execution",
+    "set_task_throttle",
+    "monitor_nightly_transfers",
 ]
